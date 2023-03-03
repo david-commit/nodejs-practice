@@ -2,7 +2,18 @@ const express = require('express')
 const app = express()
 const fs = require('fs')
 const morgan = require('morgan')
+const mongoose = require('mongoose')
+const dotenv = require ('dotenv')
+dotenv.config()
 const postRoutes = require('./routes/post')
+
+// DB Connect
+mongoose.connect(process.env.MONGO_URI)
+.then(() => console.log('Database connected!'))
+
+mongoose.connection.on('error', err => {
+ console.log(`Database connection error: ${err.message}`)
+})
 
 const fileName = './lorem.txt'
 const errorHandler = err => console.log(err)
@@ -24,5 +35,5 @@ app.use('/', customMiddleware, postRoutes)
 
 console.log("I'm learning NodeJS")
 
-const PORT = 8080
+const PORT = process.env.PORT || 8080
 app.listen(PORT, () => console.log(`Node server running on PORT:${PORT}`))
