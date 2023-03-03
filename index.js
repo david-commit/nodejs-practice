@@ -34,8 +34,8 @@ const customMiddleware = (req, res, next) => {
 
 // Middleware
 app.use(morgan('dev'));
+app.use(bodyParser.json()); //Must come before ROUTE MIDDLEWARE
 app.use('/', customMiddleware, postRoutes);
-app.use(bodyParser.json());
 
 console.log("I'm learning NodeJS");
 

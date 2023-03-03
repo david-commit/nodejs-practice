@@ -1,4 +1,4 @@
-const Post = require('../models/post')
+const Post = require('../models/post');
 
 // GET Requst
 exports.getPosts = (req, res) => {
@@ -14,7 +14,6 @@ exports.getPosts = (req, res) => {
 
 // POST Request
 exports.createPost = (req, res) => {
- const post = new Post(req.body)
- console.log(`Request body: ${post.body}`)
- console.log(`Creating POST ${post}`)
-}
+  const post = new Post(req.body);
+  console.log('CREATING POST:', req.body);
+};
