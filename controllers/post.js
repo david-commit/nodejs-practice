@@ -1,3 +1,6 @@
+const Post = require('../models/post')
+
+// GET Requst
 exports.getPosts = (req, res) => {
   res.json({
     greeting: 'Hello Node JS',
@@ -8,3 +11,10 @@ exports.getPosts = (req, res) => {
     arry: [1, 2, 3, 4],
   });
 };
+
+// POST Request
+exports.createPost = (req, res) => {
+ const post = new Post(req.body)
+ console.log(`Request body: ${post.body}`)
+ console.log(`Creating POST ${post}`)
+}
