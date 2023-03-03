@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const fs = require('fs')
 const morgan = require('morgan')
-const { getPosts } = require('./routes/post')
+const postRoutes = require('./routes/post')
 
 const fileName = './lorem.txt'
 const errorHandler = err => console.log(err)
@@ -20,9 +20,7 @@ const customMiddleware = (req, res, next) => {
 
 // Middleware
 app.use(morgan('dev'))
-
-// Route
-app.get('/', customMiddleware, getPosts)
+app.use('/', customMiddleware, postRoutes)
 
 console.log("I'm learning NodeJS")
 
